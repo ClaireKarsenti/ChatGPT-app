@@ -1,7 +1,22 @@
 import ReactDOM from 'react-dom/client';
 import App from './App.tsx';
 import './index.scss';
+import { Provider } from 'react-redux';
+import { Middleware } from 'redux';
+import { configureStore } from '@reduxjs/toolkit';
+import { setupListeners } from '@reduxjs/toolkit/dist/query/index';
+import { api } from './state/api.ts';
+
+export const store = configureStore({
+  reducer: { [api.reducerPath]: api.reducer },
+  middleware: (getDefault) =>
+    getDefault().concat(api.middleware) as Middleware[],
+});
+
+setupListeners(store.dispatch);
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <App />
+  <Provider store={store}>
+    <App />
+  </Provider>
 );
