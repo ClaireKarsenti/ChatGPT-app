@@ -1,12 +1,8 @@
 import { ChatBubbleLeftRightIcon, PhoneIcon } from '@heroicons/react/24/solid';
-
-export type Chat = {
-  title: string;
-  description: string;
-};
+import { ChatHeaderProps } from 'react-chat-engine-advanced';
 
 export interface CustomerHeaderProps {
-  chat: Chat;
+  chat: ChatHeaderProps;
 }
 
 const CustomerHeader = ({ chat }: CustomerHeaderProps) => {
