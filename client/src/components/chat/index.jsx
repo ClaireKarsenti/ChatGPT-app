@@ -16,6 +16,21 @@ const secret = '1234';
 const Chat = () => {
   const chatProps = useMultiChatLogic(projectId, username, secret);
 
+  const renderMessageForm = (props) => {
+    const { chat } = chatProps;
+
+    if (chat) {
+      if (chat.title.startsWith('AiChat_')) {
+        return <Ai props={props} activeChat={chat} />;
+      } else if (chat.title.startsWith('AiCode_')) {
+        return <AiCode props={props} activeChat={chat} />;
+      } else if (chat.title.startsWith('AiAssist_')) {
+        return <AiAssist props={props} activeChat={chat} />;
+      }
+    }
+    return <StandardMessageForm props={props} activeChat={chat} />;
+  };
+
   return (
     <div style={{ flexBasis: '100%' }}>
       <MultiChatSocket {...chatProps} />
@@ -23,20 +38,7 @@ const Chat = () => {
         {...chatProps}
         style={{ height: '100vh' }}
         renderChatHeader={(chat) => <Header chat={chat} />}
-        renderMessageForm={(props) => {
-          if (chatProps.chat?.title.startsWith('AiChat_')) {
-            return <Ai props={props} activeChat={chatProps.chat} />;
-          }
-          if (chatProps.chat?.title.startsWith('AiCode_')) {
-            return <AiCode props={props} activeChat={chatProps.chat} />;
-          }
-          if (chatProps.chat?.title.startsWith('AiAssist_')) {
-            return <AiAssist props={props} activeChat={chatProps.chat} />;
-          }
-          return (
-            <StandardMessageForm props={props} activeChat={chatProps.chat} />
-          );
-        }}
+        renderMessageForm={renderMessageForm}
       />
     </div>
   );
