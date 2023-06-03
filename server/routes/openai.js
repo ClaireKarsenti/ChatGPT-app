@@ -10,19 +10,17 @@ router.post('/text', async (req, res) => {
   try {
     const { text, activeChatId } = req.body;
 
-    const response = await openai.createCompletion({
-      model: 'text-davinci-003',
-      prompt: text,
-      temperature: 0.5,
-      max_tokens: 2048,
-      top_p: 1,
-      frequency_penalty: 0.5,
-      presence_penalty: 0,
+    const response = await openai.createChatCompletion({
+      model: 'gpt-3.5-turbo',
+      messages: [
+        { role: 'system', content: 'You are a helpful assistant.' }, // this represents the bot and what role they will assume
+        { role: 'user', content: text }, // the message that the user sends
+      ],
     });
 
     await axios.post(
       `https://api.chatengine.io/chats/${activeChatId}/messages/`,
-      { text: response.data.choices[0].text },
+      { text: response.data.choices[0].message.content },
       {
         headers: {
           'Project-ID': process.env.PROJECT_ID,
@@ -32,9 +30,9 @@ router.post('/text', async (req, res) => {
       }
     );
 
-    res.status(200).json({ text: response.data.choices[0].text });
+    res.status(200).json({ text: response.data.choices[0].message.content });
   } catch (error) {
-    console.error('error', error);
+    console.error('error', error.response.data.error);
     res.status(500).json({ error: error.message });
   }
 });
