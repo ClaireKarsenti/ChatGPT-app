@@ -7,7 +7,7 @@ import Header from '@/components/customHeader';
 import StandardMessageForm from '@/components/customMessageForms/StandardMessageForm';
 import Ai from '@/components/customMessageForms/Ai';
 import AiCode from '@/components/customMessageForms/AiCode';
-import AiAssist from '../customMessageForms/AiAssist';
+import AiAssist from '@/components/customMessageForms/AiAssist';
 
 const projectId = import.meta.env.VITE_PROJECT_ID;
 const username = 'testuser';
