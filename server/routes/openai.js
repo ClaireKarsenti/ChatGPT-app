@@ -9,7 +9,6 @@ const router = express.Router();
 router.post('/text', async (req, res) => {
   try {
     const { text, activeChatId } = req.body;
-    console.log('req.body', req.body);
 
     const response = await openai.createCompletion({
       model: 'text-davinci-003',
@@ -20,7 +19,6 @@ router.post('/text', async (req, res) => {
       frequency_penalty: 0.5,
       presence_penalty: 0,
     });
-    console.log('response', response.data);
 
     await axios.post(
       `https://api.chatengine.io/chats/${activeChatId}/messages/`,
