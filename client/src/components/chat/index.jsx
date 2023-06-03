@@ -3,9 +3,9 @@ import {
   MultiChatSocket,
   MultiChatWindow,
 } from 'react-chat-engine-advanced';
-import Header from '../customHeader/index';
-import StandardMessageForm from '../customMessageForms/StandardMessageForm';
-import Ai from '../customMessageForms/Ai';
+import Header from '@/components/customHeader';
+import StandardMessageForm from '@/components/customMessageForms/StandardMessageForm';
+import Ai from '@/components/customMessageForms/Ai';
 
 const projectId = import.meta.env.VITE_PROJECT_ID;
 const username = 'testuser';
