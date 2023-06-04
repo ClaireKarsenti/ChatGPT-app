@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { usePostLoginMutation, usePostSignUpMutation } from '@/state/api';
+import Input from '../elements/input';
 
 const Login = ({ setUser, setSecret }) => {
   const [isRegister, setIsRegister] = useState(false);
@@ -35,15 +36,13 @@ const Login = ({ setUser, setSecret }) => {
         </p>
 
         <div>
-          <input
-            className="login-input"
+          <Input
             type="text"
             placeholder="Username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
-          <input
-            className="login-input"
+          <Input
             type="password"
             placeholder="Password"
             value={password}
