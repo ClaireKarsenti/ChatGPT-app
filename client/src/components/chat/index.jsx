@@ -9,12 +9,9 @@ import Ai from '@/components/customMessageForms/Ai';
 import AiCode from '@/components/customMessageForms/AiCode';
 import AiAssist from '@/components/customMessageForms/AiAssist';
 
-const projectId = import.meta.env.VITE_PROJECT_ID;
-const username = 'testuser';
-const secret = '1234';
-
-const Chat = () => {
-  const chatProps = useMultiChatLogic(projectId, username, secret);
+const Chat = ({ user, secret }) => {
+  const projectId = import.meta.env.VITE_PROJECT_ID;
+  const chatProps = useMultiChatLogic(projectId, user, secret);
 
   const renderMessageForm = (props) => {
     const { chat } = chatProps;
