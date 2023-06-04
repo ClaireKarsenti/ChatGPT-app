@@ -5,6 +5,7 @@ import {
 } from '@heroicons/react/24/solid';
 import { useState } from 'react';
 import Dropzone from 'react-dropzone';
+import Input from '../elements/Input';
 
 const MessageFormUI = ({
   setAttachment,
@@ -37,16 +38,16 @@ const MessageFormUI = ({
       )}
       <div className="message-form">
         <div className="message-form-input-container">
-          <input
+          <Input
             className="message-form-input"
             type="text"
+            placeholder="Send a message..."
             value={message}
             onChange={handleChange}
             onKeyDown={handleKeyDown}
-            placeholder="Send a message..."
           />
           {appendText && (
-            <input
+            <Input
               className="message-form-assist"
               type="text"
               disabled="disabled"

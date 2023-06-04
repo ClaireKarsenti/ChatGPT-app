@@ -38,12 +38,14 @@ const Login = ({ setUser, setSecret }) => {
 
         <div>
           <Input
+            className="login-input"
             type="text"
             placeholder="Username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
           <Input
+            className="login-input"
             type="password"
             placeholder="Password"
             value={password}
