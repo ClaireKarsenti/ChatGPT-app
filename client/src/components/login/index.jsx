@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { usePostLoginMutation, usePostSignUpMutation } from '@/state/api';
-import Input from '../elements/input';
+import Input from '../elements/Input';
+import Button from '../elements/Button';
 
 const Login = ({ setUser, setSecret }) => {
   const [isRegister, setIsRegister] = useState(false);
@@ -52,13 +53,9 @@ const Login = ({ setUser, setSecret }) => {
 
         <div className="login-actions">
           {isRegister ? (
-            <button type="button" onClick={handleRegister}>
-              Register
-            </button>
+            <Button title="Register" onClick={handleRegister} />
           ) : (
-            <button type="button" onClick={handleLogin}>
-              Login
-            </button>
+            <Button title="Login" onClick={handleLogin} />
           )}
         </div>
       </div>
